@@ -5,12 +5,12 @@
 /*FONTS*/
 /* Layout: one reading column; each goal expands in place into source tabs showing the original passages. Everything set in Computer Modern so prose and math read alike. */
 :root{
-  --bg:#f2f3f5; --card:#ffffff; --ink:#1b1d21; --muted:#5f6670; --line:#dcdfe4; --paper:#ffffff; --paper-ink:#111;
-  --accent:#2b4f7e; --accent-soft:#e6edf6; --star:#9a6b12; --good:#2e6b45; --good-soft:#e3f1e8;
+  --bg:#f8f6f1; --card:#fffefb; --ink:#1d1b20; --muted:#625d68; --line:#e2ded6; --paper:#ffffff; --paper-ink:#111;
+  --accent:#5a3d8a; --accent-soft:#eee8f6; --star:#5a3d8a; --good:#2e7d4a; --good-soft:#e3f1e8; --m0:#b9b4bf; --m1:#c0392b; --m3:#c98a0b; --m5:#2e7d4a;
   --f:"CMU Serif","Latin Modern Roman","Computer Modern",Georgia,serif;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15181d;--card:#1d2127;--ink:#e6e8eb;--muted:#a1a8b2;--line:#2f353e;--accent:#8db4e6;--accent-soft:#22324a;--star:#e0b45f;--good:#7fcf9c;--good-soft:#1c3427;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#15181d;--card:#1d2127;--ink:#e6e8eb;--muted:#a1a8b2;--line:#2f353e;--accent:#8db4e6;--accent-soft:#22324a;--star:#e0b45f;--good:#7fcf9c;--good-soft:#1c3427;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17151b;--card:#201d25;--ink:#ebe8ef;--muted:#a59fad;--line:#35303d;--accent:#bba5e6;--accent-soft:#2d2640;--star:#bba5e6;--good:#7fcf9c;--good-soft:#1c3427;--m0:#5c5763;--m1:#ef7a6c;--m3:#e8b84a;--m5:#7fcf9c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17151b;--card:#201d25;--ink:#ebe8ef;--muted:#a59fad;--line:#35303d;--accent:#bba5e6;--accent-soft:#2d2640;--star:#bba5e6;--good:#7fcf9c;--good-soft:#1c3427;--m0:#5c5763;--m1:#ef7a6c;--m3:#e8b84a;--m5:#7fcf9c;color-scheme:dark}
 *{box-sizing:border-box}[hidden]{display:none!important}
 body{background:var(--bg);color:var(--ink);font:17px/1.5 var(--f);font-variant-numeric:lining-nums}
 button,input{font:inherit;color:inherit}
@@ -28,7 +28,13 @@ h1{font-weight:700;font-size:clamp(26px,4.5vw,34px);line-height:1.15;margin:0;te
 main .wrap{padding-block:10px 70px;display:grid;gap:10px}
 .week{font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:18px 0 0}
 .goal{background:var(--card);border:1px solid var(--line);border-radius:10px}
-.goal.known{border-color:color-mix(in srgb,var(--good) 50%,var(--line))}
+.goal{border-left:5px solid var(--lvl,var(--line))}
+.lv1,.lv2{--lvl:var(--m1)}.lv3{--lvl:var(--m3)}.lv4,.lv5{--lvl:var(--m5)}
+.mini{letter-spacing:1px;color:var(--lvl)}.mini i{font-style:normal;color:var(--m0)}
+.stars{display:flex;align-items:center;gap:2px;flex-wrap:wrap}.stars .lab{margin-right:8px}
+.stars button{border:0;background:none;cursor:pointer;font-size:26px;line-height:1;padding:0 2px;color:var(--m0)}
+.stars button.on{color:var(--lvl)}.stars button:hover{transform:scale(1.12)}
+.stars .word{margin-left:10px;color:var(--muted);font-size:15px}
 .ghead{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start;text-align:left;background:none;border:0;padding:14px 16px;cursor:pointer;border-radius:10px}
 .ghead:hover{background:color-mix(in srgb,var(--accent-soft) 45%,transparent)}
 .gn{font-weight:700;color:var(--accent);min-width:2.4em}
@@ -38,8 +44,6 @@ main .wrap{padding-block:10px 70px;display:grid;gap:10px}
 .chev{color:var(--muted);transition:transform .15s}.goal.open .chev{transform:rotate(90deg)}
 .gbody{border-top:1px solid var(--line);padding:12px 16px 18px;display:grid;gap:12px}
 .actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
-.know{display:flex;gap:8px;align-items:center;cursor:pointer}
-.know input{width:18px;height:18px;accent-color:var(--good)}
 .btn{border:1px solid var(--line);background:var(--card);border-radius:7px;padding:6px 13px;cursor:pointer;font-size:15.5px}
 .btn:hover{border-color:var(--accent)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--card)}
@@ -82,11 +86,11 @@ main .wrap{padding-block:10px 70px;display:grid;gap:10px}
 
 <header><div class="wrap">
   <h1>Math 112 · Midterm 2 Study Map</h1>
-  <p class="lede">Open a learning goal to see every lecture passage, homework problem, PCRQ, exit-ticket question and practice-exam problem that covers it, exactly as it appears in the course materials.</p>
+  <p class="lede">Open a learning goal to see every lecture passage, homework problem, PCRQ, exit-ticket question and practice-exam problem that covers it.</p>
   <div class="controls">
     <input id="q" class="search" type="search" placeholder="Search goals and questions, e.g. supremum, polar form, squeeze" aria-label="Search">
     <div class="row" id="weeks"></div>
-    <div class="row"><button class="pill star" id="fStar" aria-pressed="false">★ On a practice exam</button><button class="pill" id="fTodo" aria-pressed="false">Not checked off yet</button><span class="count" id="count"></span></div>
+    <div class="row"><button class="pill star" id="fStar" aria-pressed="false">On a practice exam</button><button class="pill" id="fTodo" aria-pressed="false">Needs work (under 4 ★)</button><span class="count" id="count"></span></div>
   </div>
 </div></header>
 
@@ -108,7 +112,9 @@ main .wrap{padding-block:10px 70px;display:grid;gap:10px}
 <script>
 const KINDS=[["lecture","Lecture notes"],["homework","Homework"],["pcrq","PCRQ"],["ticket","Exit tickets"],["exam","Practice exams"]];
 const WEEKS=[["Week 5","Week 5"],["Week 6","Week 6"],["Week 7","Week 7"],["Week 9","Week 9"],["Lectures 15–16 (not on goals sheet)","Lectures 15–16"]];
-let DATA=null, known={}, store=null;
+let DATA=null, mastery={}, store=null;
+const WORDS=["Not rated","Just started","Shaky","Getting there","Solid","Mastered"];
+const lv=id=>mastery[id]||0;
 const ui={q:"",week:null,star:false,todo:false,open:null,tab:{}};
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -117,20 +123,20 @@ const gid=g=>String(g.n);
 const its=g=>g.items.map(([id,note])=>({id,note,...DATA.items[id]}));
 
 /* progress: per-person record in the artifact, else this browser */
-try{known=JSON.parse(localStorage.getItem("m112known")||"{}")||{};}catch(e){}
-function save(){try{localStorage.setItem("m112known",JSON.stringify(known));}catch(e){}
-  if(store)store.set({known,updated:Date.now()}).catch(()=>{});}
+try{mastery=JSON.parse(localStorage.getItem("m112mastery")||"{}")||{};}catch(e){}
+function save(){try{localStorage.setItem("m112mastery",JSON.stringify(mastery));}catch(e){}
+  if(store)store.set({mastery,updated:Date.now()}).catch(()=>{});}
 async function connect(){try{
   if(!window.claude||!claude.use)return;
   const [db,u]=await Promise.all([claude.use("db"),claude.use("user")]);if(!db||!u)return;
   const id=await u.id();if(!id)return;store=db.collection("data/users/"+id).doc("progress");
-  const s=await store.get();if(s.exists){known=(s.data()||{}).known||{};render();}else if(Object.keys(known).length)save();
+  const s=await store.get();if(s.exists){const v=s.data()||{};mastery=v.mastery||Object.fromEntries(Object.keys(v.known||{}).map(k=>[k,5]));render();}else if(Object.keys(mastery).length)save();
 }catch(e){}}
 
 function match(g){
   if(ui.week&&g.week!==ui.week)return false;
   if(ui.star&&!g.star)return false;
-  if(ui.todo&&known[gid(g)])return false;
+  if(ui.todo&&lv(gid(g))>=4)return false;
   if(ui.q){const hay=(g.text+" "+its(g).map(i=>i.src+" "+i.label+" "+(i.search||"")).join(" ")).toLowerCase();
     if(!ui.q.toLowerCase().split(/\s+/).every(w=>hay.includes(w)))return false;}
   return true;
@@ -144,23 +150,23 @@ function itemHTML(i){
   return `<div class="item">${head}${note}${body}</div>`;
 }
 function goalHTML(g){
-  const id=gid(g),open=ui.open===id,list=its(g),k=!!known[id];
+  const id=gid(g),open=ui.open===id,list=its(g),k=lv(id);
   let body="";
   if(open){
     const counts=Object.fromEntries(KINDS.map(([t])=>[t,list.filter(i=>i.kind===t).length]));
     let tab=ui.tab[id]; if(!tab||!counts[tab])tab=(KINDS.find(([t])=>counts[t])||KINDS[0])[0];
-    body=`<div class="gbody"><div class="actions"><label class="know"><input type="checkbox" data-know="${id}" ${k?"checked":""}> I know this goal</label><button class="btn" data-quiz="${id}">Quiz me on this goal</button></div>
+    body=`<div class="gbody"><div class="actions"><div class="stars" role="group" aria-label="Mastery level"><span class="lab">Mastery</span>${[1,2,3,4,5].map(n=>`<button data-rate="${n}" data-g="${id}" class="${n<=k?"on":""}" aria-label="${n} of 5: ${WORDS[n]}" aria-pressed="${n<=k}">★</button>`).join("")}<span class="word">${WORDS[k]}</span></div><button class="btn" data-quiz="${id}">Quiz me on this goal</button></div>
       <div class="tabs" role="tablist">${KINDS.map(([t,n])=>`<button class="tab" role="tab" data-tab="${t}" data-g="${id}" aria-selected="${t===tab}" ${counts[t]?"":"disabled"}>${n} (${counts[t]})</button>`).join("")}</div>
       <div class="items">${list.filter(i=>i.kind===tab).map(itemHTML).join("")}</div></div>`;
   }
   const label=typeof g.n==="number"?"Goal "+g.n:"Extra "+g.n;
-  return `<article class="goal ${open?"open":""} ${k?"known":""}" id="g-${id}"><button class="ghead" data-open="${id}" aria-expanded="${open}"><span class="gn">${typeof g.n==="number"?g.n:g.n}</span><span class="gt">${esc(g.text)}<span class="gmeta">${g.star?`<span class="s">★ on a practice exam</span>`:""}<span>${list.length} sources</span>${k?`<span class="k">✓ known</span>`:""}</span></span><span class="chev" aria-hidden="true">›</span></button>${body}</article>`;
+  return `<article class="goal ${open?"open":""} lv${k}" id="g-${id}"><button class="ghead" data-open="${id}" aria-expanded="${open}"><span class="gn">${typeof g.n==="number"?g.n:g.n}</span><span class="gt">${esc(g.text)}<span class="gmeta">${g.star?`<span class="s">On a practice exam</span>`:""}<span>${list.length} sources</span>${k?`<span class="mini" title="${WORDS[k]}">${"★".repeat(k)}<i>${"★".repeat(5-k)}</i></span>`:""}</span></span><span class="chev" aria-hidden="true">›</span></button>${body}</article>`;
 }
 function render(){
   if(!DATA)return;
   $("#weeks").innerHTML=`<button class="pill" data-week="" aria-pressed="${!ui.week}">All weeks</button>`+WEEKS.map(([w,n])=>`<button class="pill" data-week="${esc(w)}" aria-pressed="${ui.week===w}">${n}</button>`).join("");
-  const gs=DATA.goals.filter(match), total=DATA.goals.length, k=DATA.goals.filter(g=>known[gid(g)]).length;
-  $("#count").textContent=`${k} of ${total} checked off`;
+  const gs=DATA.goals.filter(match), total=DATA.goals.length, k=DATA.goals.filter(g=>lv(gid(g))>=4).length;
+  $("#count").textContent=`${k} of ${total} goals at 4 ★ or more`;
   if(!gs.length){$("#list").innerHTML=`<p class="empty">No goals match. Clear the search or a filter.</p>`;return;}
   let h="",last=null;for(const g of gs){if(g.week!==last){h+=`<h2 class="week">${esc(g.week)}</h2>`;last=g.week;}h+=goalHTML(g);}
   $("#list").innerHTML=h; const o=ui.open&&document.getElementById("g-"+ui.open); if(o)tex(o);
@@ -168,11 +174,12 @@ function render(){
 document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
   if(b.dataset.open!==undefined){ui.open=ui.open===b.dataset.open?null:b.dataset.open;render();const el=document.getElementById("g-"+b.dataset.open);if(el&&ui.open)el.scrollIntoView({block:"nearest"});}
   else if(b.dataset.week!==undefined){ui.week=b.dataset.week||null;render();}
+  else if(b.dataset.rate){const g=b.dataset.g,n=+b.dataset.rate;if(lv(g)===n)delete mastery[g];else mastery[g]=n;save();render();}
   else if(b.dataset.tab){ui.tab[b.dataset.g]=b.dataset.tab;render();}
   else if(b.dataset.pdf){openPdf(b.dataset.pdf,+b.dataset.page,b.dataset.title);}
   else if(b.dataset.quiz){openQuiz(b.dataset.quiz);}
 });
-document.addEventListener("change",e=>{const t=e.target;if(t.dataset.know){t.checked?known[t.dataset.know]=1:delete known[t.dataset.know];save();render();}});
+
 $("#fStar").onclick=e=>{ui.star=!ui.star;e.currentTarget.setAttribute("aria-pressed",ui.star);render();};
 $("#fTodo").onclick=e=>{ui.todo=!ui.todo;e.currentTarget.setAttribute("aria-pressed",ui.todo);render();};
 let qt;$("#q").addEventListener("input",e=>{clearTimeout(qt);qt=setTimeout(()=>{ui.q=e.target.value.trim();render();},200);});
