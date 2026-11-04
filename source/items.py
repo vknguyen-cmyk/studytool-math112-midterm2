@@ -125,7 +125,7 @@ add("L14.D14","L14","§1 Definition 1.4","Definition 1.4.",r"The **range** is $\
 add("L14.R2","L14","§1 Remark 2","should not be confused",r"$(-1)^n$ has range $\{-1,1\}$; different sequences can share a range.")
 add("L14.D15","L14","§1 Definition 1.5","Definition 1.5.",r"A **tail** is $(a_m,a_{m+1},\dots)$; e.g. $(5,6,7,\dots)$ is a tail of $a_n=n$.")
 add("L14.D21","L14","§2 Definition 2.1","Definition 2.1.",r"$a_n\to a$ if $\forall\varepsilon>0\ \exists n_0(\varepsilon)$ with $|a_n-a|<\varepsilon$ for all $n\ge n_0(\varepsilon)$.")
-add("L14.R3","L14","§2 Remark 3 (Fig. 3)","Remark 3. Using nested quantifiers",r"$\forall\varepsilon>0\ \exists n_0(\varepsilon)\ \forall n\ge n_0:\ a_n\in B(a,\varepsilon)$.")
+add("L14.R3","L14","§2 Remark 3 (Fig. 3)","Remark 3.",r"$\forall\varepsilon>0\ \exists n_0(\varepsilon)\ \forall n\ge n_0:\ a_n\in B(a,\varepsilon)$.")
 add("L14.R4","L14","§2 Remark 4","Remark 4. In the definition",r"$n_0$ depends on $\varepsilon$: a game against an opponent picking smaller $\varepsilon$.")
 add("L14.R5","L14","§2 Remark 5","Remark 5. Given",r"Only finitely many terms ($a_1,\dots,a_{n_0-1}$) can lie outside $B(a,\varepsilon)$.")
 add("L14.R6","L14","§2 Remark 6","Remark 6. The definition",r"A tail $(a_{n_0},a_{n_0+1},\dots)$ lies entirely in $B(a,\varepsilon)$.")
