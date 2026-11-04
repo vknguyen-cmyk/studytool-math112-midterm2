@@ -1,4 +1,4 @@
-# Math 112 Midterm 2: learning-goal map
+# Math 112 Midterm 2 Study Tool
 
 An interactive study page that maps every Midterm 2 learning goal to the lecture items, homework problems, PCRQ questions, exit tickets and practice-exam problems that cover it.
 
