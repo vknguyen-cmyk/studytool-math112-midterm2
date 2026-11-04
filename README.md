@@ -4,7 +4,7 @@ An interactive study page that maps every Midterm 2 learning goal to the lecture
 
 ## Use it
 
-- **Online:** turn on GitHub Pages (Settings → Pages → Deploy from branch → `main` / root), then open `https://vknguyen-cmyk.github.io/math112-midterm2/`.
+- **Online:** turn on GitHub Pages (Settings → Pages → Deploy from branch → `main` / root), then open `https://vknguyen-cmyk.github.io/studytool-math112-midterm2/`.
 - **Locally:** run `python3 -m http.server` in this folder and open `http://localhost:8000`. Opening `index.html` straight from disk won't load the data, because browsers block `fetch()` on `file://`.
 
 ## Features
